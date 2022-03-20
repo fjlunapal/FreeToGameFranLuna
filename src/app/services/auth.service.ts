@@ -5,9 +5,13 @@ import { HttpClient } from "@angular/common/http";
   providedIn: 'root'
 })
 export class AuthService {
-token: any;
+  token: any;
+  id: any;
+  type: any;
+  actived: any;
 
- url='http://semillero.allsites.es/public/api';
+  url='http://semillero.allsites.es/public/api';
+  
   constructor(private http: HttpClient) { }
 
   login(myemail: string, mypassword: string){
@@ -18,6 +22,9 @@ token: any;
         password: mypassword})     
         .subscribe(data => {
           this.token = data.data.token;
+          this.id= data.data.id;
+          this.type= data.data.type;
+          this.actived=data.data.actived;
           resolve(data);   
           console.log(data);   
           err=> {
