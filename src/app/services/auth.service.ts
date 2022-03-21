@@ -33,5 +33,21 @@ export class AuthService {
       });
     });
   }
+
+  register(myName: string, mySecondname: string, myEmail: string, myPassword: string, myPasswordConf : string){
+    return new Promise(resolve => {
+      this.http.post(this.url + '/register', 
+      {
+        firstName: myName,
+        secondName: mySecondname,
+        email: myEmail,
+        password: myPassword,
+        c_password: myPasswordConf})
+        .subscribe(data => {
+          console.log(data);
+          resolve(data);
+        });
+    });
+  }
 }
 
