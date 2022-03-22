@@ -17,7 +17,7 @@ export class LoginPage implements OnInit {
   email = new FormControl();
   password = new FormControl();
 
-  constructor(fb: FormBuilder, public auth: AuthService, public router: Router) {
+  constructor(fb: FormBuilder, public auth: AuthService, public router: Router,) {
 
    }
 
