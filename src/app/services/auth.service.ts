@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +48,77 @@ export class AuthService {
           resolve(data);
         });
     });
+  }
+
+  getUsers(){
+    return new Promise<any>(resolve => {
+      this.http.get(this.url + '/users',{
+        headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.token)
+      })
+      .subscribe(data => {resolve(data);
+        console.log(data);
+      err => {
+        console.log(err);
+      }})
+    })
+  }
+
+  activateUser(id: number){
+
+    return new Promise(resolve => {
+      this.http.post(this.url + '/activate',
+      {
+        user_id: id
+      },
+      {
+        headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.token)
+      })
+      .subscribe(data => {resolve(data)
+        console.log(data);
+      err => {
+        console.log(err);
+      }
+      })
+    })
+  }
+
+  disableUser(id: number){
+
+    return new Promise(resolve => {
+      this.http.post(this.url + '/deactivate',
+      {
+        user_id: id
+      },
+      {
+        headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.token)
+      })
+      .subscribe(data => {resolve(data)
+        console.log(data);
+      err => {
+        console.log(err);
+      }
+      })
+    })
+  }
+
+  deleteUser(id: number){
+
+    return new Promise(resolve => {
+      this.http.post(this.url + '/user/deleted/'+id,
+      {
+        user_id: id
+      },
+      {
+        headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.token)
+      })
+      .subscribe(data => {resolve(data)
+        console.log(data);
+      err => {
+        console.log(err);
+      }
+      })
+    })
+
   }
 }
 
