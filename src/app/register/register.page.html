@@ -14,29 +14,29 @@
       <ion-card-title>Register</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <form>
+      <form [formGroup]="ionicForm">
         <ion-item>
           <ion-label position="floating">First Name</ion-label>
-          <ion-input [formControl]="firstName"></ion-input>
+          <ion-input formControlName="firstName"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Second Name</ion-label>
-          <ion-input [formControl]="secondName"></ion-input>  
+          <ion-input formControlName="secondName"></ion-input>  
         </ion-item>
         <ion-item>
           <ion-label position="floating">Email</ion-label>
-          <ion-input [formControl]="email"></ion-input>
+          <ion-input formControlName="email"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Password</ion-label>
-          <ion-input [formControl]="password" type="password"></ion-input>
+          <ion-input formControlName="password" type="password"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Confirm password</ion-label>
-          <ion-input [formControl]="c_password" type="password"></ion-input>
+          <ion-input formControlName="c_password" type="password"></ion-input>
         </ion-item>
         </form>
-        <ion-button (click)="register()">
+        <ion-button (click)="submitForm()">
           Register
         </ion-button>
     </ion-card-content>
