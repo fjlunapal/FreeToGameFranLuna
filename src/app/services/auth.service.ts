@@ -34,12 +34,12 @@ export class AuthService {
     });
   }
 
-  register(myName: string, mySecondname: string, myEmail: string, myPassword: string, myPasswordConf : string){
+  register(myName: string, mysecondname: string, myEmail: string, myPassword: string, myPasswordConf : string){
     return new Promise(resolve => {
       this.http.post(this.url + '/register', 
       {
-        firstName: myName,
-        secondName: mySecondname,
+        firstname: myName,
+        secondname: mysecondname,
         email: myEmail,
         password: myPassword,
         c_password: myPasswordConf})
