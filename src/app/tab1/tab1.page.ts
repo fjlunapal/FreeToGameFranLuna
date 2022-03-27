@@ -59,7 +59,6 @@ export class Tab1Page {
          handler: () => {
           this.authService.deleteUser(id)
           this.ngOnInit();
-          this.ngOnInit();
          }
       }
 
