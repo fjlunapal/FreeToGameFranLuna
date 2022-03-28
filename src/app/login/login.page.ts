@@ -27,7 +27,7 @@ export class LoginPage implements OnInit {
      }
      else if(this.auth.token != null && this.auth.actived == '1' && this.auth.type == 'u'){
       console.log(this.auth.actived);
-      // RUTA DONDE MANDARA AL USUARIO: this.router.navigate(['/tabs']);
+      this.router.navigate(['/tab1user']);
      }
 
     })

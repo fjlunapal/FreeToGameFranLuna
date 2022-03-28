@@ -17,7 +17,11 @@ const routes: Routes = [
   {
   path: 'tabs',
   loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
-}
+},  {
+    path: 'tab1user',
+    loadChildren: () => import('./tab1user/tab1user.module').then( m => m.Tab1userPageModule)
+  }
+
   
 
 ];

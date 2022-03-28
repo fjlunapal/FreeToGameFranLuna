@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { AlertController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,10 @@ export class AuthService {
   actived: any;
 
   url='http://semillero.allsites.es/public/api';
+  email_confirmed: any;
+  alertController: any;
   
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public alert: AlertController) { }
 
   login(myemail: string, mypassword: string){
     return new Promise(resolve => {
@@ -46,8 +49,27 @@ export class AuthService {
         .subscribe(data => {
           console.log(data);
           resolve(data);
-        });
+        }, err => {
+          this.registerEmailExistsAlert();
+          console.log('Error'+err);
+        })
     });
+  }
+
+  async registerEmailExistsAlert() {
+    const alert = await this.alert.create({
+      header: 'Warning',
+      message: 'This email account already exists',
+      buttons: [
+        {
+          text: 'Ok',
+          id: 'cancel-button',
+          handler: (blah) => {
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 
   getUsers(){
@@ -64,8 +86,8 @@ export class AuthService {
   }
 
   activateUser(id: number){
-
-    return new Promise(resolve => {
+    if(this.email_confirmed==1){
+          return new Promise(resolve => {
       this.http.post(this.url + '/activate',
       {
         user_id: id
@@ -80,6 +102,11 @@ export class AuthService {
       }
       })
     })
+    }
+    else{
+      console.log("email no confirmado")
+    }
+
   }
 
   disableUser(id: number){

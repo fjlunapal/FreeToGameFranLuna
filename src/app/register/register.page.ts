@@ -35,12 +35,6 @@ export class RegisterPage implements OnInit {
   ngOnInit() {
   }
 
-  // async register(){
-  //   this.auth.register(this.Validators.firstname, this.Validators.lastName, this.Validators.email, this.Validators.password, this.Validators.c_password ).then(data =>{
-      
-  //   })
-  // }
-
   submitForm() {
     var f = this.ionicForm.value;
     this.isSubmitted = true;
