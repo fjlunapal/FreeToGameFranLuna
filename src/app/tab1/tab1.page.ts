@@ -34,11 +34,13 @@ export class Tab1Page {
     this.authService.activateUser(id);
     this.list.closeSlidingItems();
     this.ngOnInit();
+    this.ngOnInit();
   }
 
   disable(id: number) {
     this.authService.disableUser(id);
     this.list.closeSlidingItems();
+    this.ngOnInit();
     this.ngOnInit();
   }
 

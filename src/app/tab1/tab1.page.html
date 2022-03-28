@@ -9,8 +9,7 @@
 <ion-content [fullscreen]="true">
   <ion-list #list>
     <ion-item-sliding *ngFor="let user of users">
-
-      <ion-item>
+      <ion-item *ngIf="user.deleted==0 && user.type=='u'">
         <ion-label>
           <h2>{{user.firstname}}</h2>
           <h4>{{user.email}}</h4>

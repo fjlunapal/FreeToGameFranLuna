@@ -21,10 +21,12 @@ export class LoginPage implements OnInit {
 
   login(){
     this.auth.login(this.email.value, this.password.value).then(data => {
-     if(this.auth.token != null && this.auth.actived == 1 && this.auth.type == 'a'){
+     if(this.auth.token != null && this.auth.actived == '1' && this.auth.type == 'a') {
+       console.log(this.auth.actived);
        this.router.navigate(['/tabs']);
      }
-     else if(this.auth.token != null && this.auth.actived == 1 && this.auth.type == 'u'){
+     else if(this.auth.token != null && this.auth.actived == '1' && this.auth.type == 'u'){
+      console.log(this.auth.actived);
       // RUTA DONDE MANDARA AL USUARIO: this.router.navigate(['/tabs']);
      }
 
