@@ -40,7 +40,7 @@ export class RegisterPage implements OnInit {
     this.isSubmitted = true;
 
     if (!this.ionicForm.valid) {
-      console.log('Please provide all the required values!')
+      this.auth.registerValuesNotOkAlert();
       return false;
     } else {
       console.log(this.ionicForm.value)

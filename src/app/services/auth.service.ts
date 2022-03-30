@@ -10,7 +10,7 @@ export class AuthService {
   id: any;
   type: any;
   actived: any;
-
+  deleted: any;
   url='http://semillero.allsites.es/public/api';
   email_confirmed: any;
   alertController: any;
@@ -28,11 +28,11 @@ export class AuthService {
           this.id= data.data.id;
           this.type= data.data.type;
           this.actived=data.data.actived;
-          resolve(data);   
-          console.log(data);   
-          err=> {
-            console.log(err)
-          }      
+          console.log(data);
+          resolve(data);              
+      }, err => {
+          this.invalidLoginAlert();
+          console.log('Error'+err);
       });
     });
   }
@@ -69,6 +69,54 @@ export class AuthService {
         }
       ]
     });
+    await alert.present();
+  }
+
+  async invalidLoginAlert() {
+    const alert = await this.alert.create({
+      header: 'Warning',
+      message: 'Email or password invalid',
+      buttons: [
+        {
+          text: 'Ok',
+          id: 'cancel-button',
+          handler: (blah) => {
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  async userNotActivedAlert() {
+    const alert = await this.alert.create({
+      header: 'Warning',
+      message: 'This user is not activated, please verify that you have confirmed your account by email and wait the administrator to activate your account. If the error persists, please contact with the administrator.',
+      buttons: [
+        {
+          text: 'Ok',
+          id: 'cancel-button',
+          handler: (blah) => {
+          }
+        }
+      ]
+    })
+    await alert.present();
+  }
+
+  async registerValuesNotOkAlert() {
+    const alert = await this.alert.create({
+      header: 'Warning',
+      message: 'Please, write all the required fields properly.',
+      buttons: [
+        {
+          text: 'Ok',
+          id: 'cancel-button',
+          handler: (blah) => {
+          }
+        }
+      ]
+    })
     await alert.present();
   }
 

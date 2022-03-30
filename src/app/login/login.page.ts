@@ -21,7 +21,10 @@ export class LoginPage implements OnInit {
 
   login(){
     this.auth.login(this.email.value, this.password.value).then(data => {
-     if(this.auth.token != null && this.auth.actived == '1' && this.auth.type == 'a') {
+     if(this.auth.actived=='0'){
+      this.auth.userNotActivedAlert();
+     }
+      else if(this.auth.token != null && this.auth.actived == '1' && this.auth.type == 'a') {
        console.log(this.auth.actived);
        this.router.navigate(['/tabs']);
      }
@@ -30,8 +33,8 @@ export class LoginPage implements OnInit {
       this.router.navigate(['/tab1user']);
      }
     })
-
    }
+
   ngOnInit() {
   }
 }
