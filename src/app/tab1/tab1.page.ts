@@ -30,8 +30,8 @@ export class Tab1Page {
     }
   }
 
-  activate(id: number) {
-    this.authService.activateUser(id);
+  activate(id: number, email_confirmed: number) {
+    this.authService.activateUser(id, email_confirmed);
     this.list.closeSlidingItems();
     this.ngOnInit();
     this.ngOnInit();

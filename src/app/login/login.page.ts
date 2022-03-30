@@ -29,7 +29,6 @@ export class LoginPage implements OnInit {
       console.log(this.auth.actived);
       this.router.navigate(['/tab1user']);
      }
-
     })
 
    }

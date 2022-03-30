@@ -85,8 +85,9 @@ export class AuthService {
     })
   }
 
-  activateUser(id: number){
-    if(this.email_confirmed==1){
+  activateUser(id: number, email_confirmed: number){
+    console.log(email_confirmed)
+    if(email_confirmed==1){
           return new Promise(resolve => {
       this.http.post(this.url + '/activate',
       {
@@ -145,7 +146,6 @@ export class AuthService {
       }
       })
     })
-
   }
 }
 

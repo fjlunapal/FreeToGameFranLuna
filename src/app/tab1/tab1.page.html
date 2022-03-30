@@ -21,7 +21,7 @@
       <ion-item-options side="start">
         <ion-item-option color="danger" (click)="delete(user.id)">Delete</ion-item-option>
         <ion-item-option color="danger" *ngIf="user.actived==1" (click)="disable(user.id)">Disable</ion-item-option>
-        <ion-item-option color="success" *ngIf="user.actived==0" (click)="activate(user.id)">Activate</ion-item-option>
+        <ion-item-option color="success" *ngIf="user.actived==0" (click)="activate(user.id, user.email_confirmed)">Activate</ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
