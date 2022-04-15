@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { AlertController } from '@ionic/angular';
+import { Game } from "./interfaces/Game";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,11 @@ export class AuthService {
   type: any;
   actived: any;
   deleted: any;
+
+  apiKeyFTG: string='83c725f3a9msh953d328ddba934cp138fa6jsnc33952c716ae';
   url='http://semillero.allsites.es/public/api';
+  ftgUrl='https://free-to-play-games-database.p.rapidapi.com/api';
+
   email_confirmed: any;
   alertController: any;
   
@@ -193,6 +198,19 @@ export class AuthService {
         console.log(err);
       }
       })
+    })
+  }
+
+  getGames(){
+    return new Promise(resolve => {    
+      this.http.get<Game>(this.ftgUrl + '/games',{
+        headers: new HttpHeaders().set('X-RapidAPI-Key', this.apiKeyFTG)
+      })
+      .subscribe(data => {resolve(data);
+        console.log(data);
+      err => {
+        console.log(err);
+      }})
     })
   }
 }
