@@ -1,13 +1,28 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar color="primary">
-    <ion-title>Films</ion-title>
+    <ion-title>
+      Platforms
+    </ion-title>
     <ion-buttons slot="start">
       <ion-back-button text="Return" defaultHref="/login"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
+  <p></p>
+  <ion-segment value="PC (Windows), Web Browser" (ionChange)="selectedPlatform($event)" align="center">
+    <ion-segment-button color="danger" value="PC (Windows), Web Browser">
+      All
+    </ion-segment-button>
+    <ion-segment-button color="danger" value="PC (Windows)">
+      Windows
+    </ion-segment-button>
+    <ion-segment-button color="danger" value="Web Browser">
+      Web Browser
+    </ion-segment-button>
+  </ion-segment>
+
   <ion-card *ngFor="let game of games">
     <ion-card-header>
       <ion-card-title>{{game.title}}</ion-card-title>
@@ -19,17 +34,4 @@
       <ion-img [src]="game.thumbnail"></ion-img>
     </ion-card-content>
   </ion-card>
-
-  <ion-tabs>
-    <ion-tab-bar slot="bottom">
-      <ion-tab-button routerLink="/usertab1">
-        <ion-icon name="log-in-outline"></ion-icon>
-        <ion-label>Films</ion-label>
-      </ion-tab-button>
-      <ion-tab-button routerLink="/usertab2">
-        <ion-icon name="log-in-outline"></ion-icon>
-        <ion-label>Platforms</ion-label>
-      </ion-tab-button>
-    </ion-tab-bar>
-  </ion-tabs>
 </ion-content>

@@ -213,5 +213,45 @@ export class AuthService {
       }})
     })
   }
+
+  getGamesByPlatform(platform: any){
+    if(platform==="pc"){
+      return new Promise(resolve => {    
+        this.http.get<Game>(this.ftgUrl + '/games?platform=pc',{
+          headers: new HttpHeaders().set('X-RapidAPI-Key', this.apiKeyFTG)
+        })
+        .subscribe(data => {resolve(data);
+          console.log(data);
+        err => {
+          console.log(err);
+        }})
+      })
+    }
+    else if(platform==="browser"){
+      return new Promise(resolve => {    
+        this.http.get<Game>(this.ftgUrl + '/games?platform=browser',{
+          headers: new HttpHeaders().set('X-RapidAPI-Key', this.apiKeyFTG)
+        })
+        .subscribe(data => {resolve(data);
+          console.log(data);
+        err => {
+          console.log(err);
+        }})
+      })
+    }
+    else{
+      return new Promise(resolve => {    
+        this.http.get<Game>(this.ftgUrl + '/games',{
+          headers: new HttpHeaders().set('X-RapidAPI-Key', this.apiKeyFTG)
+        })
+        .subscribe(data => {resolve(data);
+          console.log(data);
+        err => {
+          console.log(err);
+        }})
+      })
+    }
+
+  }
 }
 

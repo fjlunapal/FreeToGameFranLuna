@@ -20,11 +20,7 @@ const routes: Routes = [
 },
   {
     path: 'usertab1',
-    loadChildren: () => import('./usertab1/usertab1.module').then( m => m.Usertab1PageModule)
-  },
-  {
-    path: 'usertab2',
-    loadChildren: () => import('./usertab2/usertab2.module').then( m => m.Usertab2PageModule)
+    loadChildren: () => import('./usertabs/tabs/tabs.module').then( m => m.TabsPageModule)
   }
 ];
 @NgModule({
