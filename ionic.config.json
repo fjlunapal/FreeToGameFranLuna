@@ -1,5 +1,7 @@
 {
   "name": "FreeToGameFranLuna",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
