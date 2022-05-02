@@ -276,8 +276,17 @@ export class AuthService {
     })   
   }
 
-  deleteFavourites(){
-    
+  deleteFavourites(game: Game){
+    return this.getFavourites().then(favourite => {
+      const favouriteList = [];
+      
+      favourite.forEach(favourite => {
+        if(favourite.id != game.id){
+          favouriteList.push(favourite);
+        }
+      });
+      this.storage.set(this.favouriteGamesKey, favouriteList);
+    });
   }
 
   async getFavourites(){

@@ -22,6 +22,10 @@ export class Tab1Page implements OnInit {
     });
     
   }
+  
+  ionViewDidEnter() {  
+    this.refreshFavouriteGames();
+  }
 
   loadData(event) {
     setTimeout(() => {

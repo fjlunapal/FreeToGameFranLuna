@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Game, Platform } from 'src/app/services/interfaces/Game';
+import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab3',
@@ -9,44 +11,50 @@ import { Game, Platform } from 'src/app/services/interfaces/Game';
 })
 export class Tab3Page {
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, public alert: AlertController, public router: Router) {
+  }
 
   games: Game[] = [];
   
   ngOnInit() {
-    this.authService.getFavourites().then((games: Game[]) => {
-      this.games = games;
+    this.refreshFavouriteGames();
+  }
+
+  ionViewDidEnter() {  
+    this.refreshFavouriteGames();
+  }
+
+  deleteFavouriteGame(game: Game){
+    this.authService.deleteFavourites(game).then(() => {
+      this.refreshFavouriteGames();
     });
   }
   
-  showWAll(){
-    this.authService.getGamesByPlatform("all").then((games: Game[]) => {
+  private refreshFavouriteGames(){
+    this.authService.getFavourites().then((games: Game[]) => {
       this.games = games;
+      console.log(games);
+      if(games === null || games.length === 0){
+        this.noFavouritesAlert();
+      }
     });
   }
 
-  showWindows(){
-    this.authService.getGamesByPlatform("pc").then((games: Game[]) => {
-      this.games = games;
+  async noFavouritesAlert() {
+    const alert = await this.alert.create({
+      header: 'Warning',
+      message: 'You dont have any favourite games yet',
+      buttons: [
+        {
+          text: 'Ok',
+          id: 'cancel-button',
+          handler: (blah) => {
+            // console.log('Confirm Cancel: blah');
+            this.router.navigate(['/usertab1/tab1']);
+          }
+        }
+      ]
     });
-  }
-
-  showWebBrowser(){
-    this.authService.getGamesByPlatform("browser").then((games: Game[]) => {
-      this.games = games;
-    });
-  }
-
-  selectedPlatform(ev: any) {
-    console.log(ev.detail);
-    if (ev.detail.value === Platform.WebBrowser.toString()){
-      this.showWebBrowser();
-    }
-    else if(ev.detail.value === Platform.PCWindows.toString()){
-      this.showWindows();
-    }
-    else{
-      this.showWAll();
-    }
+    await alert.present();
   }
 }

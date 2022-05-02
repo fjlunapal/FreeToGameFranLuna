@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
     <ion-title>
-      Platforms
+      Favourites
     </ion-title>
     <ion-buttons slot="start">
       <ion-back-button text="Return" defaultHref="/login"></ion-back-button>
@@ -10,19 +10,6 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <p></p>
-  <ion-segment value="PC (Windows), Web Browser" (ionChange)="selectedPlatform($event)" align="center">
-    <ion-segment-button color="danger" value="PC (Windows), Web Browser">
-      All
-    </ion-segment-button>
-    <ion-segment-button color="danger" value="PC (Windows)">
-      Windows
-    </ion-segment-button>
-    <ion-segment-button color="danger" value="Web Browser">
-      Web Browser
-    </ion-segment-button>
-  </ion-segment>
-
   <ion-card *ngFor="let game of games">
     <ion-card-header>
       <ion-card-title>{{game.title}}</ion-card-title>
@@ -35,6 +22,9 @@
     </ion-card-content>
     <ion-card-content>
       <ion-img [src]="game.thumbnail"></ion-img>
+    </ion-card-content>
+    <ion-card-content>
+      <ion-button color="danger" (click)="deleteFavouriteGame(game)"><ion-icon name="star-outline"></ion-icon></ion-button>
     </ion-card-content>
   </ion-card>
 </ion-content>
