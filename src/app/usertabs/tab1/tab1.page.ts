@@ -11,13 +11,16 @@ import { IonInfiniteScroll } from '@ionic/angular';
 export class Tab1Page implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   games: Game[] = [];
+  favourites: Game[] = [];
+
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
     this.authService.getGames().then((games: Game[]) => {
       this.games = games;
-      console.log(games)
+      this.refreshFavouriteGames();
     });
+    
   }
 
   loadData(event) {
@@ -31,5 +34,31 @@ export class Tab1Page implements OnInit {
     }, 500);
   }
 
+  addFavourite(game: Game){
+    this.authService.addFavourite(game).then(favourites => {
+      this.refreshFavouriteGames();
+    })
+    
+  }
+
+  private refreshFavouriteGames(){
+    this.authService.getFavourites().then(favourite => {
+      if(favourite === null){
+        favourite = []
+      }
+      console.log(this.games);
+      this.games.forEach((game)=> {
+        game.favourite = false;
+        favourite.forEach((favourite)=> {
+          if(favourite.id === game.id){
+            game.favourite = true;
+          }
+        });
+      });
+      this.favourites = favourite;
+      
+      console.log(this.games);
+    });
+  }
 }
 

@@ -1,9 +1,11 @@
 export interface Game {
+    id:                     number;
     title:                  string;
     thumbnail:              string;
     short_description:      string;
     platform:               Platform;
     developer:              string;
+    favourite?:             boolean;
   }
   
   export enum Platform {

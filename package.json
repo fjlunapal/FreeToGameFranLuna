@@ -19,9 +19,14 @@
     "@angular/platform-browser": "~13.2.2",
     "@angular/platform-browser-dynamic": "~13.2.2",
     "@angular/router": "~13.2.2",
+    "@awesome-cordova-plugins/native-storage": "^5.41.0",
+    "@capacitor/core": "3.5.0",
     "@ionic/angular": "^6.0.0",
     "@ionic/cordova-builders": "^6.1.0",
+    "@ionic/storage": "^3.0.6",
+    "@ionic/storage-angular": "^3.0.6",
     "cordova-android": "10.1.2",
+    "cordova-plugin-nativestorage": "^2.3.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
@@ -36,6 +41,7 @@
     "@angular/compiler": "~13.2.2",
     "@angular/compiler-cli": "~13.2.2",
     "@angular/language-service": "~13.2.2",
+    "@capacitor/cli": "3.5.0",
     "@ionic/angular-toolkit": "^6.0.0",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.3",
@@ -48,6 +54,7 @@
     "cordova-plugin-splashscreen": "5.0.2",
     "cordova-plugin-statusbar": "^2.4.2",
     "cordova-plugin-useragent": "^1.0.6",
+    "cordova-sqlite-storage": "^6.0.0",
     "eslint": "^7.6.0",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-jsdoc": "30.7.6",
@@ -72,7 +79,8 @@
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
-      "im.ltdev.cordova.UserAgent": {}
+      "im.ltdev.cordova.UserAgent": {},
+      "cordova-sqlite-storage": {}
     },
     "platforms": [
       "android"

@@ -2,6 +2,8 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { AlertController } from '@ionic/angular';
 import { Game } from "./interfaces/Game";
+import { Storage } from '@ionic/storage-angular';
+
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +21,17 @@ export class AuthService {
 
   email_confirmed: any;
   alertController: any;
-  
-  constructor(private http: HttpClient, public alert: AlertController) { }
+  private _storage: Storage | null = null;
+  favouriteGamesKey: string = "favouriteGames"
+
+  constructor(private http: HttpClient, public alert: AlertController, private storage: Storage) { 
+    this.init();
+  }
+
+  async init() {
+    const storage = await this.storage.create();
+    this._storage = storage;
+  }
 
   login(myemail: string, mypassword: string){
     return new Promise(resolve => {
@@ -252,6 +263,27 @@ export class AuthService {
       })
     }
 
+  }
+
+  addFavourite(game: Game){
+    return this.getFavourites().then(favourite => {
+      console.log(favourite);
+      if(favourite === null){
+        favourite = []
+      }
+      favourite.push(game)
+      this.storage?.set(this.favouriteGamesKey, favourite);
+    })   
+  }
+
+  deleteFavourites(){
+    
+  }
+
+  async getFavourites(){
+    
+    const game = await this.storage.get(this.favouriteGamesKey);
+    return game;
   }
 }
 
