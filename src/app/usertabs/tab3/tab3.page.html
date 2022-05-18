@@ -6,6 +6,9 @@
     <ion-buttons slot="start">
       <ion-back-button text="Return" defaultHref="/login"></ion-back-button>
     </ion-buttons>
+    <ion-buttons slot="end" *ngIf="carrito.length > 0">
+      <ion-button (click)="openCart()"><ion-icon name="cart-outline"></ion-icon></ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -24,6 +27,9 @@
       <ion-img [src]="game.thumbnail"></ion-img>
     </ion-card-content>
     <ion-card-content>
+      <ion-button (click)="addCart(game)"><ion-icon name="add-circle-outline"></ion-icon></ion-button>
+    </ion-card-content>
+    <ion-card-content end>
       <ion-button color="danger" (click)="deleteFavouriteGame(game)"><ion-icon name="star-outline"></ion-icon></ion-button>
     </ion-card-content>
   </ion-card>

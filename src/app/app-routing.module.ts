@@ -21,7 +21,11 @@ const routes: Routes = [
   {
     path: 'usertab1',
     loadChildren: () => import('./usertabs/tabs/tabs.module').then( m => m.TabsPageModule)
+  },  {
+    path: 'cart',
+    loadChildren: () => import('./cart/cart.module').then( m => m.CartPageModule)
   }
+
 ];
 @NgModule({
   imports: [

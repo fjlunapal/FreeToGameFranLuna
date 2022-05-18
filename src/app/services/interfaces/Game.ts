@@ -6,6 +6,7 @@ export interface Game {
     platform:               Platform;
     developer:              string;
     favourite?:             boolean;
+    inCart?:                boolean;
   }
   
   export enum Platform {

@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Game, Platform } from 'src/app/services/interfaces/Game';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab3',
@@ -11,11 +12,13 @@ import { Router } from '@angular/router';
 })
 export class Tab3Page {
 
-  constructor(private authService: AuthService, public alert: AlertController, public router: Router) {
+  constructor(private authService: AuthService, public alert: AlertController, public router: Router, private modalCtrl: ModalController) {
   }
 
   games: Game[] = [];
-  
+  carrito: Game[] = [];
+  // public order = environment.orderData;
+
   ngOnInit() {
     this.refreshFavouriteGames();
   }
@@ -57,4 +60,15 @@ export class Tab3Page {
     });
     await alert.present();
   }
+
+  addCart(game){
+    this.carrito.push(game);
+    console.log(this.carrito);
+  }
+
+  openCart(){
+    this.authService.setCartGames(this.carrito)
+    this.router.navigate(['/cart']);
+  }
 }
+

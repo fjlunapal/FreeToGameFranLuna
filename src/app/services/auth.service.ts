@@ -23,6 +23,7 @@ export class AuthService {
   alertController: any;
   private _storage: Storage | null = null;
   favouriteGamesKey: string = "favouriteGames"
+  cartGames: Game[] = [];
 
   constructor(private http: HttpClient, public alert: AlertController, private storage: Storage) { 
     this.init();
@@ -293,6 +294,14 @@ export class AuthService {
     
     const game = await this.storage.get(this.favouriteGamesKey);
     return game;
+  }
+
+  getCartGames(){
+    return this.cartGames;
+  }
+
+  setCartGames(games: Game []){
+    this.cartGames = games;
   }
 }
 
