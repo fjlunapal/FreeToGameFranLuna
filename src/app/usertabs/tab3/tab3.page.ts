@@ -13,6 +13,7 @@ import { ModalController } from '@ionic/angular';
 export class Tab3Page {
 
   constructor(private authService: AuthService, public alert: AlertController, public router: Router, private modalCtrl: ModalController) {
+    this.carrito= [];
   }
 
   games: Game[] = [];
@@ -21,11 +22,15 @@ export class Tab3Page {
 
   ngOnInit() {
     this.refreshFavouriteGames();
+    this.carrito= [];
   }
 
-  ionViewDidEnter() {  
+  ionViewDidEnter(){
+    console.log("ionViewDidEnter")
     this.refreshFavouriteGames();
-  }
+    this.carrito=this.authService.getCartGames();
+    console.log(this.authService.cartGames)
+}
 
   deleteFavouriteGame(game: Game){
     this.authService.deleteFavourites(game).then(() => {
@@ -68,6 +73,7 @@ export class Tab3Page {
 
   openCart(){
     this.authService.setCartGames(this.carrito)
+    this.carrito=[];
     this.router.navigate(['/cart']);
   }
 }

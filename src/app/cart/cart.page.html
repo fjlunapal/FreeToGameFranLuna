@@ -1,18 +1,27 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>cart</ion-title>
+    <ion-title>Cart</ion-title>
     <ion-buttons slot="start">
-      <ion-back-button text="Return"></ion-back-button>
+      <ion-button (click)="goAnOtherPage()">Return</ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="order()">
+        <ion-icon name="card-outline"></ion-icon>
+        <ion-label>Make Order</ion-label>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-label>
+    <h2 *ngIf="games.length === 0">No hay ningún juego en el pedido
+      actual</h2>
+  </ion-label>
   <ion-list #list *ngFor="let game of games">
       <ion-item>
         <ion-label>
           <h2>{{game.title}}</h2>
-          <!-- <h4>{{game.email}}</h4> -->
         </ion-label>
       </ion-item>
   </ion-list>

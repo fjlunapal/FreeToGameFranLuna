@@ -24,7 +24,7 @@ export class AuthService {
   private _storage: Storage | null = null;
   favouriteGamesKey: string = "favouriteGames"
   cartGames: Game[] = [];
-
+  userEmail: any;
   constructor(private http: HttpClient, public alert: AlertController, private storage: Storage) { 
     this.init();
   }
@@ -35,6 +35,7 @@ export class AuthService {
   }
 
   login(myemail: string, mypassword: string){
+    this.userEmail = myemail;
     return new Promise(resolve => {
       this.http.post<any>(this.url + '/login', 
       {
