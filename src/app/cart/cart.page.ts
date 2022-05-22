@@ -29,16 +29,19 @@ export class CartPage implements OnInit {
   }
 
   order(){
-  //   var email = {
-  //     to: this.authService.userEmail,
-  //     subject: 'Free to game order',
-  //     body: 'Here you have a resume of your order.',
-  //     isHtml: true
-  //   };
-  //  this.emailComposer.open(email).then(null, function () {
-  //    // user cancelled email
-  //  });
     this.createPdf().then(() => {
+      var email = {
+        to: this.authService.userEmail,
+        attachment: [
+          this.pdfObj
+        ],
+        subject: 'Free to game order',
+        body: 'Here you have a resume of your order.',
+        isHtml: true
+      };
+     this.emailComposer.open(email).then(null, function () {
+       // user cancelled email
+     });
       this.downloadPdf();
 
       this.authService.setCartGames([]);
