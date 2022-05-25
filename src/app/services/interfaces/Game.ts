@@ -5,6 +5,7 @@ export interface Game {
     short_description:      string;
     platform:               Platform;
     developer:              string;
+    genre:                  string;
     favourite?:             boolean;
     inCart?:                boolean;
   }

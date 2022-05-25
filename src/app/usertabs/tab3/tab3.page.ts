@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { Game, Platform } from 'src/app/services/interfaces/Game';
+import { Game } from 'src/app/services/interfaces/Game';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
